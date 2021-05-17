@@ -15,7 +15,8 @@ protected: // create from serialization only
 
 // Attributes
 public:
-	MyMap* map;
+	MyMap* map = new MyMap();
+	MyMap* GetMap();
 // Operations
 public:
 

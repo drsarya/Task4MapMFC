@@ -20,6 +20,7 @@ public:
 
 // Overrides
 public:
+	void DrawNode(CString& s, int x, int y, CDC* pDC);
 	virtual void OnDraw(CDC* pDC);  // overridden to draw this view
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 protected:

@@ -31,6 +31,7 @@ END_MESSAGE_MAP()
 
 CTask4View::CTask4View() noexcept
 {
+ 
 	// TODO: add construction code here
 
 }
@@ -43,20 +44,37 @@ BOOL CTask4View::PreCreateWindow(CREATESTRUCT& cs)
 {
 	// TODO: Modify the Window class or styles here by modifying
 	//  the CREATESTRUCT cs
-
+ 
 	return CView::PreCreateWindow(cs);
 }
 
 // CTask4View drawing
+void CTask4View::DrawNode(CString& s, int x, int y , CDC* pDC) {
 
-void CTask4View::OnDraw(CDC* /*pDC*/)
+	pDC->Rectangle(x, y, x+70, y + 20);
+	pDC->TextOutW(x, y+30, s);
+}
+
+void CTask4View::OnDraw(CDC*  pDC )
 {
 	CMap4Doc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
 	if (!pDoc)
 		return;
+	//GetDocument()->GetMap()->addWords("exe' (Win32): Loaded 'C:\Windows\SysWOW64\WinTypes.dll'. 'Task4.exe' (Win32) : Loaded 'C:\Windows\SysWOW64\WinTypes.dll'.		'Task4.exe' (Win32) : Loaded 'C:\Windows\SysWOW64\ntmarta.dll'.		'Task4.exe' (Win32) : Unloaded 'C:\Windows\SysWOW64\WinTypes.dll'		'Task4.exe' (Win32) : Loaded 'C:\Windows\SysWOW64\iertutil.dll'.		d : \agent\_work\2\s\src\vctools\VC7Libs\Ship\ATLMFC\Src\MFC\afxmdichildwndex.cpp(1475) : atlTraceGeneral - Warning : ITaskbarList3 is NULL.		The thread 0x2c64 has exited with code 0 (0x0).		The thread 0x4950 has exited with code 0 (0x0).The thread 0x4f9c has exited with code 0 (0x0).The thread 0x500c has exited with code 0 (0x0).	The thread 0x4838 has exited with code 0 (0x0).");
+ 
 
-	// TODO: add draw code for native data here
+	pDC->Rectangle(0, 0, 500, 500);
+
+	std::string str = GetDocument()->GetMap()->print(new BasePrinter());
+	CRect rcText(0, 0, 500, 100);
+
+	 
+	 pDC->DrawText(CString(CA2T(str.c_str())), &rcText, DT_LEFT  );
+
+
+	// pDC->ScrollDC(500,500 );
+ 	// TODO: add draw code for native data here
 }
 
 void CTask4View::OnRButtonUp(UINT /* nFlags */, CPoint point)

@@ -11,7 +11,8 @@
 #endif
 
 #include "Task4Doc.h"
-
+#include <iostream>
+#include <fstream>
 #include <propkey.h>
 
 #ifdef _DEBUG
@@ -34,6 +35,11 @@ CMap4Doc::CMap4Doc() noexcept
 
 }
 
+MyMap* CMap4Doc::GetMap()
+{
+	return  map;
+}
+
 CMap4Doc::~CMap4Doc()
 {
 }
@@ -50,11 +56,11 @@ BOOL CMap4Doc::OnNewDocument()
 }
 
 
-inline std::string to_string(const CString& cst)
+std::string  to_string(const CString& cst)
 {
 	return CT2A(cst.GetString());
 }
-
+ 
 // CMap4Doc serialization
 
 void CMap4Doc::Serialize(CArchive& ar)
@@ -65,10 +71,23 @@ void CMap4Doc::Serialize(CArchive& ar)
 	}
 	else
 	{
-		CString str;
-		while (ar.ReadString(str)) {
-			map->addWords(to_string(str));
+		std::string result ;
+		std::string line;
+		std::ifstream in(ar.GetFile()->GetFilePath());   
+		if (in.is_open())
+		{
+			while (getline(in, line))
+			{
+				result += line;
+				result += "/n";
+			}	
+			map->fromFile(result);
+
 		}
+		in.close();      
+	 
+	 
+	 
 		// TODO: add loading code here
 	}
 }

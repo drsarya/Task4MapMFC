@@ -25,7 +25,7 @@ void MyMap::fromFile(string str)
 {
 	Logger::log("чтение словаря из файла", LOG_ENUM::OK);
 	vector<Node*>* newMap = new vector<Node*>;
-	const regex r("([a-z]+)\\s*:{1}\\s*(\\d+)|(\\d+)\\s*:{1}\\s*([a-z]+)", regex::icase);
+	const regex r("([a-zа-яё]+)\\s*:{1}\\s*(\\d+)|(\\d+)\\s*:{1}\\s*([a-zа-яё]+)", regex::icase);
 	smatch m;
 	while (std::regex_search(str, m, r)) {
 		if (m.size() == 5 && m[1] != "") {
@@ -54,7 +54,7 @@ void MyMap::toFile()
 
 void MyMap::addWords(string file)
 {
-	const regex r("\\b[a-z]+\\b", regex::icase);
+	const regex r("[a-zа-яё]+", regex::icase);
 	smatch m;
 	while (std::regex_search(file, m, r)) {
 		contains(m[0], 1);

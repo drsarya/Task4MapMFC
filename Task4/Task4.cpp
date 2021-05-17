@@ -87,6 +87,7 @@ BOOL CTask4App::InitInstance()
 	CMultiDocTemplate* pDocTemplate;
 	pDocTemplate = new CMultiDocTemplate(IDR_Task4TYPE,
 		RUNTIME_CLASS(CMap4Doc),
+
 		RUNTIME_CLASS(CChildFrame), // custom MDI child frame
 		RUNTIME_CLASS(CTask4View));
 	if (!pDocTemplate)
@@ -154,6 +155,8 @@ protected:
 // Implementation
 protected:
 	DECLARE_MESSAGE_MAP()
+public:
+	afx_msg void OnLvnItemchangedList1(NMHDR* pNMHDR, LRESULT* pResult);
 };
 
 CAboutDlg::CAboutDlg() noexcept : CDialogEx(IDD_ABOUTBOX)
@@ -166,6 +169,7 @@ void CAboutDlg::DoDataExchange(CDataExchange* pDX)
 }
 
 BEGIN_MESSAGE_MAP(CAboutDlg, CDialogEx)
+	ON_NOTIFY(LVN_ITEMCHANGED, IDC_LIST1, &CAboutDlg::OnLvnItemchangedList1)
 END_MESSAGE_MAP()
 
 // App command to run the dialog
@@ -198,3 +202,11 @@ void CTask4App::SaveCustomState()
 
 
 
+
+
+void CAboutDlg::OnLvnItemchangedList1(NMHDR* pNMHDR, LRESULT* pResult)
+{
+	LPNMLISTVIEW pNMLV = reinterpret_cast<LPNMLISTVIEW>(pNMHDR);
+	// TODO: Add your control notification handler code here
+	*pResult = 0;
+}

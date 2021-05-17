@@ -208,6 +208,9 @@ LRESULT CMainFrame::OnToolbarCreateNew(WPARAM wp,LPARAM lp)
 	CString strCustomize;
 	bNameValid = strCustomize.LoadString(IDS_TOOLBAR_CUSTOMIZE);
 	ASSERT(bNameValid);
+	 
+	//pUserToolbar->InsertButton(CMFCToolBarButton(ID_APP_ABOUT, -1, _T("About")));
+
 
 	pUserToolbar->EnableCustomizeButton(TRUE, ID_VIEW_CUSTOMIZE, strCustomize);
 	return lres;
@@ -308,9 +311,13 @@ BOOL CMainFrame::LoadFrame(UINT nIDResource, DWORD dwDefaultStyle, CWnd* pParent
 	for (int i = 0; i < iMaxUserToolbars; i ++)
 	{
 		CMFCToolBar* pUserToolbar = GetUserToolBarByIndex(i);
+ 
 		if (pUserToolbar != nullptr)
 		{
-			pUserToolbar->EnableCustomizeButton(TRUE, ID_VIEW_CUSTOMIZE, strCustomize);
+
+			pUserToolbar->EnableCustomizeButton(TRUE, ID_VIEW_CUSTOMIZE, strCustomize);		
+			//pUserToolbar->InsertButton(CMFCToolBarButton(ID_APP_ABOUT, -1, _T("About")));
+
 		}
 	}
 
