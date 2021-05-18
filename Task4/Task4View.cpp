@@ -10,7 +10,8 @@
 #include "Task4.h"
 #include "CountPrinter.h"
 #endif
-
+#include <iostream>
+#include <fstream>
 #include "Task4Doc.h"
 #include "Task4View.h"
 
@@ -26,6 +27,8 @@ IMPLEMENT_DYNCREATE(CTask4View, CView)
 BEGIN_MESSAGE_MAP(CTask4View, CView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
+ 
+
 	ON_COMMAND(ID_BUTTON_ADD_WORDS, &CTask4View::OnButtonAddWords)
 	ON_COMMAND(ID_BUTTON_ALPHA_SORT, &CTask4View::OnButtonAlphaSort)
 	ON_COMMAND(ID_BUTTON_COUNT_SORT, &CTask4View::OnButtonCountSort)
@@ -53,15 +56,13 @@ BOOL CTask4View::PreCreateWindow(CREATESTRUCT& cs)
 }
 
 // CTask4View drawing
- 
+
 void CTask4View::OnDraw(CDC* pDC)
 {
 	CMap4Doc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
 	if (!pDoc)
 		return;
-	//GetDocument()->GetMap()->addWords("exe' (Win32): Loaded 'C:\Windows\SysWOW64\WinTypes.dll'. 'Task4.exe' (Win32) : Loaded 'C:\Windows\SysWOW64\WinTypes.dll'.		'Task4.exe' (Win32) : Loaded 'C:\Windows\SysWOW64\ntmarta.dll'.		'Task4.exe' (Win32) : Unloaded 'C:\Windows\SysWOW64\WinTypes.dll'		'Task4.exe' (Win32) : Loaded 'C:\Windows\SysWOW64\iertutil.dll'.		d : \agent\_work\2\s\src\vctools\VC7Libs\Ship\ATLMFC\Src\MFC\afxmdichildwndex.cpp(1475) : atlTraceGeneral - Warning : ITaskbarList3 is NULL.		The thread 0x2c64 has exited with code 0 (0x0).		The thread 0x4950 has exited with code 0 (0x0).The thread 0x4f9c has exited with code 0 (0x0).The thread 0x500c has exited with code 0 (0x0).	The thread 0x4838 has exited with code 0 (0x0).");
-
 
 	pDC->Rectangle(0, 0, 500, 500);
 	std::string str = GetDocument()->GetMap()->print(basePrinter);
@@ -109,7 +110,29 @@ CMap4Doc* CTask4View::GetDocument() const // non-debug version is inline
 // CTask4View message handlers
 void CTask4View::OnButtonAddWords()
 {
- 
+	///CFileDialog fileDialog(true, NULL, "*.*", OFN_ALLOWMULTISELECT);
+  CFileDialog fileDialog(TRUE, _T("*.*"), NULL,OFN_HIDEREADONLY | OFN_ALLOWMULTISELECT, _T("All files and folders(*.*)|*.*||"));  
+	int result = fileDialog.DoModal();
+	if (result == IDOK)
+	{
+	 	POSITION ps = fileDialog.GetStartPosition();		 
+		string resStr = "";
+		std::string line;
+		std::ifstream in(fileDialog.GetNextPathName(ps));
+		if (in.is_open())
+		{
+			while (getline(in, line))
+			{
+				resStr += line;
+				resStr += " ";
+			}
+			GetDocument()->GetMap()->addWords(resStr);
+		}
+		in.close();
+		Invalidate();
+		UpdateWindow();
+	 }
+	 
 	//getDocument
 	// TODO: добавьте свой код обработчика команд
 }

@@ -43,13 +43,12 @@ void MyMap::fromFile(string str)
 		str = m.suffix().str();
 	}
 }
-void MyMap::toFile()
+string MyMap::toFile()
 {
 	Logger::log("сохранение словаря в файл", LOG_ENUM::OK);
-	BasePrinter ip = BasePrinter();
-	string text = ip.toString(words);
-	//сохранение файла
- 
+	BasePrinter * ip = new BasePrinter();
+	string text = ip->toString(words);
+	return text;
 }
 
 void MyMap::addWords(string file)

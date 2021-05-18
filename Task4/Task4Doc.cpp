@@ -60,34 +60,31 @@ std::string  to_string(const CString& cst)
 {
 	return CT2A(cst.GetString());
 }
- 
+
 // CMap4Doc serialization
 
 void CMap4Doc::Serialize(CArchive& ar)
 {
 	if (ar.IsStoring())
 	{
-		// TODO: add storing code here
+		string text  = map->toFile();
+		ar.Write(text.c_str(), text.size());
 	}
 	else
 	{
-		std::string result ;
+		std::string result;
 		std::string line;
-		std::ifstream in(ar.GetFile()->GetFilePath());   
+		std::ifstream in(ar.GetFile()->GetFilePath());
 		if (in.is_open())
 		{
 			while (getline(in, line))
 			{
 				result += line;
-				result += "/n";
-			}	
+				result += " ";
+			}
 			map->fromFile(result);
-
 		}
-		in.close();      
-	 
-	 
-	 
+		in.close();
 		// TODO: add loading code here
 	}
 }

@@ -16,7 +16,7 @@ public:
 
 	void fromFile(string str);
 
-	void toFile();
+	string toFile();
 
 	void addWords(string file);
 

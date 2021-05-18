@@ -314,9 +314,7 @@ BOOL CMainFrame::LoadFrame(UINT nIDResource, DWORD dwDefaultStyle, CWnd* pParent
  
 		if (pUserToolbar != nullptr)
 		{
-
 			pUserToolbar->EnableCustomizeButton(TRUE, ID_VIEW_CUSTOMIZE, strCustomize);		
-			//pUserToolbar->InsertButton(CMFCToolBarButton(ID_APP_ABOUT, -1, _T("About")));
 
 		}
 	}
