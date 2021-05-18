@@ -17,6 +17,7 @@
 IMPLEMENT_DYNCREATE(CChildFrame, CMDIChildWndEx)
 
 BEGIN_MESSAGE_MAP(CChildFrame, CMDIChildWndEx)
+ 
 END_MESSAGE_MAP()
 
 // CChildFrame construction/destruction
@@ -55,3 +56,6 @@ void CChildFrame::Dump(CDumpContext& dc) const
 #endif //_DEBUG
 
 // CChildFrame message handlers
+
+
+ 

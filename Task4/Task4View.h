@@ -14,13 +14,13 @@ protected: // create from serialization only
 // Attributes
 public:
 	CMap4Doc* GetDocument() const;
+	BasePrinter* basePrinter = new BasePrinter();
 
 // Operations
 public:
 
 // Overrides
 public:
-	void DrawNode(CString& s, int x, int y, CDC* pDC);
 	virtual void OnDraw(CDC* pDC);  // overridden to draw this view
 	virtual BOOL PreCreateWindow(CREATESTRUCT& cs);
 protected:
@@ -40,6 +40,10 @@ protected:
 	afx_msg void OnFilePrintPreview();
 	afx_msg void OnRButtonUp(UINT nFlags, CPoint point);
 	afx_msg void OnContextMenu(CWnd* pWnd, CPoint point);
+public:
+	afx_msg void OnButtonAddWords();
+	afx_msg void OnButtonAlphaSort();
+	afx_msg void OnButtonCountSort();
 	DECLARE_MESSAGE_MAP()
 };
 

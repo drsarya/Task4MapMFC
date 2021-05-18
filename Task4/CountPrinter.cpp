@@ -2,7 +2,7 @@
 
 bool CountPrinter::compare(Node* a, Node* b)
 {
-	return	 a->getWord() < b->getWord();
+	return	 a->getCount() < b->getCount();
 }
 
 string CountPrinter::refactor(vector<Node*> array)
