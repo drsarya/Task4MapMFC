@@ -72,6 +72,8 @@ void CMap4Doc::Serialize(CArchive& ar)
 	}
 	else
 	{
+		SetConsoleCP(1251);
+		SetConsoleOutputCP(1251);
 		std::string result;
 		std::string line;
 		std::ifstream in(ar.GetFile()->GetFilePath());
