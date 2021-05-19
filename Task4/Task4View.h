@@ -5,7 +5,7 @@
 #pragma once
 
 
-class CTask4View : public CView
+class CTask4View : public CScrollView
 {
 protected: // create from serialization only
 	CTask4View() noexcept;
@@ -28,6 +28,7 @@ protected:
 // Implementation
 public:
 	virtual ~CTask4View();
+	void OnInitialUpdate();
 #ifdef _DEBUG
 	virtual void AssertValid() const;
 	virtual void Dump(CDumpContext& dc) const;

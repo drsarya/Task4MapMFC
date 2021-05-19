@@ -22,9 +22,9 @@
 
 // CTask4View
 
-IMPLEMENT_DYNCREATE(CTask4View, CView)
+IMPLEMENT_DYNCREATE(CTask4View, CScrollView)
 
-BEGIN_MESSAGE_MAP(CTask4View, CView)
+BEGIN_MESSAGE_MAP(CTask4View, CScrollView)
 	ON_WM_CONTEXTMENU()
 	ON_WM_RBUTTONUP()
  
@@ -46,6 +46,15 @@ CTask4View::CTask4View() noexcept
 CTask4View::~CTask4View()
 {
 }
+void CTask4View::OnInitialUpdate()
+{
+	CScrollView::OnInitialUpdate();
+
+	//Определить размер документа
+	CSize DocSize(20000, 20000);
+	//Установить режим отображения и размер документа
+	SetScrollSizes(MM_TEXT, DocSize, CSize(500, 500), CSize(50, 50));
+}
 
 BOOL CTask4View::PreCreateWindow(CREATESTRUCT& cs)
 {
@@ -64,9 +73,9 @@ void CTask4View::OnDraw(CDC* pDC)
 	if (!pDoc)
 		return;
 
-	pDC->Rectangle(0, 0, 500, 500);
+	//pDC->Rectangle(0, 0, 500, 500);
 	std::string str = GetDocument()->GetMap()->print(basePrinter);
-	CRect rcText(0, 0, 500, 100);
+	CRect rcText(0, 0, 500, 20000);
 	pDC->DrawText(CString(CA2T(str.c_str())), &rcText, DT_LEFT);
 
 	// TODO: add draw code for native data here
