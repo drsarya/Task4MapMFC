@@ -74,7 +74,7 @@ void CTask4View::OnDraw(CDC* pDC)
 		return;
 
 	//pDC->Rectangle(0, 0, 500, 500);
-	std::string str = GetDocument()->GetMap()->print(basePrinter);
+	std::string str = GetDocument()->GetMap()->print(GetDocument()->GetPrinter());
 	CRect rcText(0, 0, 500, 20000);
 	pDC->DrawText(CString(CA2T(str.c_str())), &rcText, DT_LEFT);
 
@@ -149,7 +149,7 @@ void CTask4View::OnButtonAddWords()
 
 void CTask4View::OnButtonAlphaSort()
 {
-	basePrinter = new BasePrinter();
+	GetDocument()->SetPrinter(  new BasePrinter );
 	Invalidate();
 	UpdateWindow();
 	// TODO: добавьте свой код обработчика команд
@@ -158,7 +158,7 @@ void CTask4View::OnButtonAlphaSort()
 
 void CTask4View::OnButtonCountSort()
 {
-	basePrinter = new CountPrinter();
+	GetDocument()->SetPrinter( new CountPrinter );
 	Invalidate();
 	UpdateWindow();
 	// TODO: добавьте свой код обработчика команд

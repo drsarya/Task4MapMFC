@@ -12,11 +12,11 @@ public:
 
 	vector<Node*> getMap();
 
-	string print(BasePrinter* prinster);
+	string print(BasePrinter* printer);
 
 	void fromFile(string str);
 
-	string toFile();
+	string toFile(BasePrinter* printer);
 
 	void addWords(string file);
 

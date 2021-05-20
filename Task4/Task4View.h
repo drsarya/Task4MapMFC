@@ -14,7 +14,7 @@ protected: // create from serialization only
 // Attributes
 public:
 	CMap4Doc* GetDocument() const;
-	BasePrinter* basePrinter = new BasePrinter();
+ 
 
 // Operations
 public:

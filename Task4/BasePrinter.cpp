@@ -19,6 +19,7 @@ string BasePrinter::toString(vector<Node*> array)
 	string result = "";
 	for (Node* number : array) {
 		result += number->toString();
+		result += " ";
 		result += "\n";
 	}
 	return result;

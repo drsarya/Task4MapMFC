@@ -39,6 +39,14 @@ MyMap* CMap4Doc::GetMap()
 {
 	return  map;
 }
+BasePrinter* CMap4Doc::GetPrinter()
+{
+	return  basePrinter;
+}
+void CMap4Doc::SetPrinter(BasePrinter* newPrinter)
+{
+	   basePrinter = newPrinter;
+}
 
 CMap4Doc::~CMap4Doc()
 {
@@ -67,7 +75,7 @@ void CMap4Doc::Serialize(CArchive& ar)
 {
 	if (ar.IsStoring())
 	{
-		string text  = map->toFile();
+		string text  = map->toFile(GetPrinter());
 		ar.Write(text.c_str(), text.size());
 	}
 	else

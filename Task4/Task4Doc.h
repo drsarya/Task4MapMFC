@@ -16,7 +16,10 @@ protected: // create from serialization only
 // Attributes
 public:
 	MyMap* map = new MyMap();
+	BasePrinter* basePrinter = nullptr;
 	MyMap* GetMap();
+	BasePrinter* GetPrinter();
+	void  SetPrinter(BasePrinter* newPrinter);
 // Operations
 public:
 

@@ -22,7 +22,7 @@ Logger::~Logger()
 
 void Logger::log(string logMsg, LOG_ENUM log) {
 
-	string filePath = "C:/Users/PC/source/repos/Task4/Task4/" + getCurrentDateTime("date") + ".txt";
+	string filePath = "C:/Users/Tom/source/repos/Task4MapMFC/Task4/" + getCurrentDateTime("date") + ".txt";
 	string now = getCurrentDateTime("now");
 	ofstream ofs(filePath.c_str(), ios_base::out | ios_base::app);
 
